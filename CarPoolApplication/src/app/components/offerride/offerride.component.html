@@ -1,0 +1,134 @@
+<section class="offer-ride  container-fluid ">
+  <navbar></navbar>
+  <div class="d-flex flex-column py-3 px-lg-5  px-sm-4 ">
+    <div class="d-flex my-5 row card-container px-0 py-0">
+      <div class="col-lg-6 col-sm- col-md-4 w-auto">
+        <div class="first-card d-flex">
+          <div class="ride-card">
+            <div class="top d-flex align-items-center justify-content-between">
+              <div class="heading">
+                <h1>Offer a ride</h1>
+                <p>we get you the matches asap !</p>
+              </div>
+              <div class="toggleBtn">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                </div>
+              </div>
+            </div>
+            <div class="input-container my-4 d-flex">
+              <div class="input-field w-100">
+                <form action="" id="my-form">
+                  <div>
+                    <p class="input-heading mt-0">From</p>
+                    <input type="text" placholder />
+                  </div>
+                  <div>
+                    <p class="input-heading">To</p>
+                    <input type="text" placholder />
+                  </div>
+                  <div>
+                    <p class="input-heading">Date</p>
+                    <input type="text" placholder="xx/mm//yyyy" id="date" />
+                  </div>
+                </form>
+              </div>
+              <div class="src-dst-img justify-content-start px-0 d-flex flex-column align-items-center">
+                <i class="bi bi-circle-fill source-img"></i>
+                <i class="bi bi-circle-fill path-img"></i>
+                <i class="bi bi-circle-fill path-img"></i>
+                <i class="bi bi-circle-fill path-img"></i>
+                <i class="bi bi-circle-fill path-img"></i>
+                <i class="bi bi-geo-alt-fill destination-img"></i>
+              </div>
+            </div>
+            <div>
+              <p class="input-heading">Time</p>
+              <div class="time-container d-flex flex-wrap my-2">
+                <button class="time-slot d-flex align-items-center justify-content-center" *ngFor="let time of timeSlots">
+                  {{ time }}
+                </button>
+                <!-- have to give the property for the button coloring and discoloring-->
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="next-btn my-3" (click)="nextCard()">
+                Next >>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-6 col-sm-12 my-lg-0 my-md-0 my-sm-4 my-4">
+        <div class="second-card " *ngIf="isNextCard">
+  
+          <div class="ride-card d-flex justify-content-between flex-column">
+            <div>
+              <div class="top d-flex align-items-center justify-content-between">
+                <div class="heading">
+                  <h1>Offer a Ride</h1>
+                  <p>we get you the matches asap !</p>
+                </div>
+                <div class="toggleBtn">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                  </div>
+                </div>
+              </div>
+              <div class="input-container my-4 d-flex">
+                <div class="input-field w-100">
+                  <form action="" id="my-form" [formGroup]="stopsForm">
+                    <div *ngFor="let stop of stops().controls; let i = index" formArrayName="stops">
+                      <p class="input-heading" [ngClass]="i == 0 ? 'mt-0' : ''">
+                        Stop {{ i }}
+                      </p>
+                      <div class="position-relative">
+                        <input type="text" name="stops" formControlName="{{ i }}" />
+                        <i class="bi bi-plus position-absolute add-icon" *ngIf="i + 1 == stops().controls.length"
+                          (click)="addStop()"></i>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="src-dst-img justify-content-start px-0 d-flex flex-column align-items-center">
+                  <i class="bi bi-circle-fill source-img"></i>
+                  <div *ngFor="let item of stops().controls; let i = index">
+                    <div *ngIf="i != 0" class="d-flex flex-column">
+                      <i class="bi bi-circle-fill path-img"></i>
+                      <i class="bi bi-circle-fill path-img"></i>
+                      <i class="bi bi-circle-fill path-img"></i>
+                      <i class="bi bi-circle-fill path-img"></i>
+                    </div>
+                  </div>
+                  <i class="bi bi-geo-alt-fill destination-img"></i>
+                </div>
+              </div>
+            </div>
+            <div class="footer">
+              <div>
+                <div class="available-seats row">
+                  <div class="col-6">
+                    <p class="input-heading mt-0 mb-3">Available Seats</p>
+                    <div class="number d-flex justify-content-start">
+                      <p class="d-flex ms-0">1</p>
+                      <p class="d-flex">2</p>
+                      <p class="d-flex">3</p>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="input-heading mt-0 mb-3">Price</p>
+                    <p class="price">180$</p>
+                  </div>
+                </div>
+                <button type="submit" class="submit-btn my-3" form="book-form" (click)="onSubmit()">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</section>
