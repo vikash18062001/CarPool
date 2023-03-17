@@ -1,13 +1,13 @@
 
-@use "../variable/variable.scss" as color;
+@use "../../../assets/variable/variable.scss" as color;
 section.offer-ride
 {
     background-image: url(../../../assets/images/applicationbg.png) ;
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 100vh;
     background-attachment: fixed;
+    height: 100vh;
 
     #userImg
     {
@@ -41,14 +41,6 @@ section.offer-ride
         }
     }
 
-.heading
-{
-    p
-    {
-        font-size: 0.66rem;
-        color: color.$cardheadingcolor;
-    }
-}
 
 .toggleBtn
 {
@@ -70,7 +62,7 @@ section.offer-ride
 
 
 
-input[type="text"]
+input[type="text"],input[type="date"]
 {
     border: none;
     border-bottom: 0.8px solid rgb(201, 200, 200);
@@ -137,15 +129,41 @@ input:focus
 
 .number > p
 {
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 50%;
-    padding: 0.1rem 0.7rem;
+    padding: 0.4rem 0.8rem;
     margin: 0 0.4rem;
-    font-size: large;
+    font-size: small;
+    font-weight: bold;
+    color: grey;
 }
 .price
 {
     font-size: 1.5rem;
+}
+
+.error-msg
+{
+    color:red;
+    font-size: 0.6rem;
+}
+
+.selected-time
+{
+    color:white;
+    background-color: color.$purplecolor;
+}
+
+.available-seat
+{
+    background-color: color.$availableseatcolor;
+    color: white !important;
+}
+
+.not-available-seat
+{
+    color: color.$seatnotavailablecolor;
+    border: 1px solid color.$seatnotavailablecolor;
 }
 @media only screen and (max-width:768px){
     .card-container

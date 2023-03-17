@@ -1,7 +1,7 @@
-<section class="offer-ride  container-fluid ">
+<!-- <section class="offer-ride container-fluid ">
   <navbar></navbar>
   <div class="d-flex flex-column py-3 px-lg-5  px-sm-4 ">
-    <div class="d-flex my-5 row card-container px-0 py-0">
+    <div class="d-flex my-3 row card-container px-0 py-0">
       <div class="col-lg-6 col-sm- col-md-4 w-auto">
         <div class="first-card d-flex">
           <div class="ride-card">
@@ -18,18 +18,21 @@
             </div>
             <div class="input-container my-4 d-flex">
               <div class="input-field w-100">
-                <form action="" id="my-form">
+                <form action="" id="my-form" [formGroup]="offerRideForm" #form="ngForm">
                   <div>
                     <p class="input-heading mt-0">From</p>
-                    <input type="text" placholder />
+                    <input type="text" placholder formControlName="From"/>
+                    <span *ngIf="(getControl('From').touched || form.submitted) && getControl('From').invalid" class="error-msg">Source location is required</span>
                   </div>
                   <div>
                     <p class="input-heading">To</p>
-                    <input type="text" placholder />
+                    <input type="text" placholder formControlName = 'To'/>
+                    <span class="error-msg" *ngIf="(getControl('To').touched || form.submitted )&& getControl('To').invalid">Destination is required</span>
                   </div>
                   <div>
                     <p class="input-heading">Date</p>
-                    <input type="text" placholder="xx/mm//yyyy" id="date" />
+                    <input type="date" placholder="xx/mm//yyyy" id="date" formControlName="Date"/>
+                    <span class="error-msg" *ngIf="(getControl('Date').touched ||form.submitted) && getControl('Date').invalid">Date is required</span>
                   </div>
                 </form>
               </div>
@@ -45,17 +48,18 @@
             <div>
               <p class="input-heading">Time</p>
               <div class="time-container d-flex flex-wrap my-2">
-                <button class="time-slot d-flex align-items-center justify-content-center" *ngFor="let time of timeSlots">
+                <button class="time-slot d-flex align-items-center justify-content-center" *ngFor="let time of timeSlots" (click)="selectedTimeSlot(time)" [ngClass]="time==selectedTime ? 'selected-time':''">
                   {{ time }}
                 </button>
-                <!-- have to give the property for the button coloring and discoloring-->
+                 have to give the property for the button coloring and discolorin
               </div>
+              <span class="error-msg" *ngIf="selectedTime == '' && form.submitted">Time is required</span>
             </div>
-            <div class="d-flex justify-content-end">
-              <button type="button" class="next-btn my-3" (click)="nextCard()">
+             <div class="d-flex justify-content-end">
+              <button  class="next-btn my-3" form="my-form" (click)="nextCard()">
                 Next >>
               </button>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
@@ -77,10 +81,10 @@
               </div>
               <div class="input-container my-4 d-flex">
                 <div class="input-field w-100">
-                  <form action="" id="my-form" [formGroup]="stopsForm">
+                  <form action="" id="myForm" [formGroup]="stopsForm" #form="ngForm">
                     <div *ngFor="let stop of stops().controls; let i = index" formArrayName="stops">
                       <p class="input-heading" [ngClass]="i == 0 ? 'mt-0' : ''">
-                        Stop {{ i }}
+                        Stop {{ i+1 }}
                       </p>
                       <div class="position-relative">
                         <input type="text" name="stops" formControlName="{{ i }}" />
@@ -110,17 +114,18 @@
                   <div class="col-6">
                     <p class="input-heading mt-0 mb-3">Available Seats</p>
                     <div class="number d-flex justify-content-start">
-                      <p class="d-flex ms-0">1</p>
-                      <p class="d-flex">2</p>
-                      <p class="d-flex">3</p>
+                      <p class="d-flex ms-0" (click)="availableSeat(1)" [ngClass]="seatsAvailable == 1?'available-seat':''">1</p>
+                      <p class="d-flex" (click)="availableSeat(2)" [ngClass]="seatsAvailable == 2?'available-seat':''">2</p>
+                      <p class="d-flex" (click)="availableSeat(3)" [ngClass]="seatsAvailable == 3?'available-seat':''">3</p>
                     </div>
+                    <span class="error-msg" *ngIf="(seatsAvailable == 0 && !isSelectedSeat)">Select available seats</span>
                   </div>
                   <div class="col-6">
                     <p class="input-heading mt-0 mb-3">Price</p>
                     <p class="price">180$</p>
                   </div>
                 </div>
-                <button type="submit" class="submit-btn my-3" form="book-form" (click)="onSubmit()">
+                <button type="submit" form="myForm" class="submit-btn my-3"  (click)="onSubmit()">
                   Submit
                 </button>
               </div>
@@ -131,4 +136,4 @@
   
     </div>
   </div>
-</section>
+</section> -->

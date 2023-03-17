@@ -1,0 +1,12 @@
+<div class="popup-message position-absolute" [ngClass]="toShow?'to-show':'to-hide'">
+    <div class="alert alert-success" 
+    *ngIf="isSuccess">
+    {{responseMsg}}
+    </div>
+
+    <div 
+    class="alert alert-danger" 
+    *ngIf="!isSuccess">
+    {{responseMsg}}
+    </div>
+</div>

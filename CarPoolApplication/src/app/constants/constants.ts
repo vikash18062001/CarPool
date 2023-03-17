@@ -1,6 +1,11 @@
 export class Constants 
 {
-    static color1 : string = "#F3B043";//orange
-    static color2: string = "#8726F5";// violet
-    static color3: string = "#363F52"; // for text
+    static generateArray(length : number)
+    {
+        return new Array(length);
+    }
+
+    static timeSlots: Array<string> = [
+        "5am - 9am","9am - 12pm","12pm - 3pm","3pm - 6pm","6pm - 9pm"
+      ]; 
 }
